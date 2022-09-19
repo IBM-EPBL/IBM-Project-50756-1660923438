@@ -1,0 +1,40 @@
+const int photo=A0;
+const int pir=A1;
+const int led=A2;
+const int buz=A3;
+int a,b;
+void setup()
+{
+  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(photo,INPUT);
+  pinMode(pir,INPUT);
+  pinMode(led,OUTPUT);
+  pinMode(buz,OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  digitalWrite(LED_BUILTIN, HIGH);
+  digitalWrite(photo,HIGH);
+  digitalWrite(pir,HIGH);
+  delay(1000); // Wait for 1000 millisecond(s)
+  digitalWrite(LED_BUILTIN, LOW);
+  digitalWrite(photo,LOW);
+  digitalWrite(pir,LOW);
+  delay(1000);
+  a=analogRead(pir);
+  if(a>0){
+    digitalWrite(buz,HIGH);
+  }
+  else{
+    digitalWrite(buz,LOW);
+  }
+  b=analogRead(photo);
+  if(b<450){
+    digitalWrite(led,HIGH);
+  }
+  else{
+    digitalWrite(led,LOW);
+  }
+}
